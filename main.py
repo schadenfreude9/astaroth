@@ -9,7 +9,7 @@ import sys
 
 def scan_host(host):
     nm = nmap.PortScanner()
-    nm.scan(host)
+    nm.scan(host, '1-12400')
     open_ports = []
     for host in nm.all_hosts():
         for proto in nm[host].all_protocols():
