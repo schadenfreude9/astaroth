@@ -7,6 +7,7 @@
 
 import nmap
 import sys
+import os
 
 def scan_host(host):
     nm = nmap.PortScanner()
@@ -16,10 +17,18 @@ def scan_host(host):
         for proto in nm[host].all_protocols():
             lport = nm[host][proto].keys()
             for port in lport:
-                service = nm[host][proto][port]['name']
+                product = nm[host][proto][port]['product']
                 version = nm[host][proto][port]['version']
-                open_ports.append([service, version])
+                open_ports.append([product, version])
     return open_ports
+
+def search_sploit(open_ports):
+    for port in open_ports:
+        product = port[0]
+        version = port[1]
+        print(f'Searching for exploits for {product} {version}...')
+        os.system(f'searchsploit {product} {version}')
+
 
 if __name__ == '__main__':
     if len(sys.argv) != 2:
@@ -28,5 +37,3 @@ if __name__ == '__main__':
     host = sys.argv[1]
     open_ports = scan_host(host)
     print(open_ports)
-
-
