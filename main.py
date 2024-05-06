@@ -31,13 +31,13 @@ def trim_results(results):
     print(all_edb_ids)
 
 def search_sploit(open_ports):
+    result= ""
     for port in open_ports:
         product = port[0]
         version = port[1]
         print(f'Searching for exploits for {product} {version}...')
-        result = os.system(f'searchsploit {product} {version} --id ')
-        print(result)
-        #trim_results(result)
+        result = str(os.system(f'searchsploit {product} {version} --id '))
+        trim_results(result)
 
 if __name__ == '__main__':
     if len(sys.argv) != 2:
