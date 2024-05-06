@@ -27,3 +27,5 @@ def main():
     host = sys.argv[1]
     launch_rpc_server() # On lance le serveur RPC
     cves = get_cves(host) #
+
+main()
