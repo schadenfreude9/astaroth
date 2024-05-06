@@ -2,6 +2,7 @@
 # Author DMO, LIT & MNE
 # A python program that use the python-nmap library to scan a host and store the open ports and their versions in an array
 # Each port is an array for which the first element is the service name and the second element is the version
+# Example : if the port is vsftpd 3.0.3, the array will be ['vsftpd', '3.0.3']
 # The user call the function scan_host() and pass the host ip address as a parameter
 
 import nmap
@@ -27,6 +28,5 @@ if __name__ == '__main__':
     host = sys.argv[1]
     open_ports = scan_host(host)
     print(open_ports)
-
 
 
