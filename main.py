@@ -35,9 +35,8 @@ def search_sploit(open_ports):
         product = port[0]
         version = port[1]
         print(f'Searching for exploits for {product} {version}...')
-        output_bytes = subprocess.check_output(f'searchsploit {product} {version} --id ', shell=True)
-        result=output_bytes.decode('utf-8')
-        print(result)
+        result = subprocess.check_output(f'searchsploit {product} {version} --id ', shell=True)
+        trim_results(result)
 
 if __name__ == '__main__':
     if len(sys.argv) != 2:
