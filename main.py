@@ -8,6 +8,7 @@
 import nmap
 import sys
 import os
+import re
 
 def scan_host(host):
     nm = nmap.PortScanner()
@@ -22,13 +23,20 @@ def scan_host(host):
                 open_ports.append([product, version])
     return open_ports
 
+def trim_results(results):
+    edb_ids = re.findall(r'\| (\d+)', results)
+    all_edb_ids = []
+    for edb_id in edb_ids:
+        all_edb_ids.append(edb_id)
+    print(all_edb_ids)
+
 def search_sploit(open_ports):
     for port in open_ports:
         product = port[0]
         version = port[1]
         print(f'Searching for exploits for {product} {version}...')
-        os.system(f'searchsploit {product} {version} --id ')
-
+        result = os.system(f'searchsploit {product} {version} --id ')
+        trim_results(result)
 
 if __name__ == '__main__':
     if len(sys.argv) != 2:
