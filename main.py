@@ -1,31 +1,31 @@
 # Projet SDV - 2024 Cybersécurité
 # Author DMO, LIT & MNE
-# A python scanner using metasploit module and nmap vulnhub script to get a list of CVE for a given host
-# VULSCAN deja installée sur le systeme
+# A python program that use the python-nmap library to scan a host and store the open ports and their versions in an array
+# Each port is an array for which the first element is the port number and the second element is the version
+# The user call the function scan_host() and pass the host ip address as a parameter
 
-import pymetasploit3.msfrpc as msfrpc
+import nmap
 import sys
-import os 
 
-def launch_rpc_server():
-    # Launch the Metasploit RPC server
-    os.system('msfrpcd -P astaroth')
+def scan_host(host):
+    nm = nmap.PortScanner()
+    nm.scan(host, '1-10000')
+    open_ports = []
+    for host in nm.all_hosts():
+        for proto in nm[host].all_protocols():
+            lport = nm[host][proto].keys()
+            for port in lport:
+                if nm[host][proto][port]['state'] == 'open':
+                    open_ports.append([port, nm[host][proto][port]['version']])
+    return open_ports
 
-def get_cves(host):
-    # Connect to the Metasploit RPC server
-    client = msfrpc.MsfRpcClient('astaroth', ssl=True)
-    listOfCVE = os.system("nmap -sV --script vulners " + host)
-    print("list of CVEs: ", listOfCVE)
-
-def main():
-    # Check if the user has provided a host
+if __name__ == '__main__':
     if len(sys.argv) != 2:
-        print('Usage: python main.py <host>')
+        print('Usage: python3 main.py <host>')
         sys.exit(1)
-
-    # Get the host
     host = sys.argv[1]
-    launch_rpc_server() # On lance le serveur RPC
-    cves = get_cves(host) #
+    open_ports = scan_host(host)
+    print(open_ports)
 
-main()
+
+
