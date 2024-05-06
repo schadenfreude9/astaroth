@@ -1,31 +1,49 @@
 # Projet SDV - 2024 Cybersécurité
 # Author DMO, LIT & MNE
-# A python program that use the python-nmap library to scan a host and store the open ports and their versions in an array
-# Each port is an array for which the first element is the port number and the second element is the version
-# The user call the function scan_host() and pass the host ip address as a parameter
+# A python scanner using metasploit module and nmap vulnhub script to get a list of CVE for a given host
 
+import metasploit
 import nmap
 import sys
 
-def scan_host(host):
-    nm = nmap.PortScanner()
-    nm.scan(host, '1-10000')
-    open_ports = []
-    for host in nm.all_hosts():
-        for proto in nm[host].all_protocols():
-            lport = nm[host][proto].keys()
-            for port in lport:
-                if nm[host][proto][port]['state'] == 'open':
-                    open_ports.append([port, nm[host][proto][port]['version']])
-    return open_ports
+# Function to get the list of CVE for a given host
 
-if __name__ == '__main__':
+def get_cve(host):
+    # Create a new instance of the Metasploit API
+    msf = metasploit.MSF()
+    # Connect to the Metasploit API
+    msf.login('msf', 'msf')
+    # Get the list of CVE for the host
+    cve = msf.get_cve(host)
+    # Disconnect from the Metasploit API
+    msf.logout()
+    return cve
+
+# Function to get the list of CVE for a given host
+
+def get_cve_nmap(host):
+    # Create a new instance of the Nmap API
+    nm = nmap.Nmap()
+    # Get the list of CVE for the host
+    cve = nm.get_cve(host)
+    return cve
+
+# Main function
+
+def main():
+    # Check if the user has provided a host
     if len(sys.argv) != 2:
-        print('Usage: python3 main.py <host>')
+        print('Usage: python main.py <host>')
         sys.exit(1)
+    # Get the host
     host = sys.argv[1]
-    open_ports = scan_host(host)
-    print(open_ports)
-
-
-
+    # Get the list of CVE for the host
+    cve = get_cve(host)
+    cve_nmap = get_cve_nmap(host)
+    # Print the list of CVE
+    print('CVE found with Metasploit:')
+    for c in cve:
+        print(c)
+    print('CVE found with Nmap:')
+    for c in cve_nmap:
+        print(c)
