@@ -3,7 +3,7 @@
 # A python scanner using metasploit module and nmap vulnhub script to get a list of CVE for a given host
 # VULSCAN deja installée sur le systeme
 
-import pymetasploit3 as msf3
+import pymetasploit3.msfrpc as msfrpc
 import sys
 import os 
 
@@ -13,7 +13,7 @@ def launch_rpc_server():
 
 def get_cves(host):
     # Connect to the Metasploit RPC server
-    msf = msf3.MsfRpcClient('astaroth', ssl=True)
+    client = msfrpc.MsfRpcClient('astaroth', ssl=True)
     listOfCVE = os.system("nmap -sV --script vulners " + host)
     print("list of CVEs: ", listOfCVE)
 
