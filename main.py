@@ -34,6 +34,8 @@ def use_sploit(edb_id):
     result = str(subprocess.check_output(f'searchsploit -x {edb_id}', shell=True))
     print(result)
 
+
+# ptet tout suppr pour utiliser metasploit on sait pas
 def search_sploit(open_ports):
     for port in open_ports:
         product = port[0]
