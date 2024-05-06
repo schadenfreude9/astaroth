@@ -36,4 +36,5 @@ if __name__ == '__main__':
         sys.exit(1)
     host = sys.argv[1]
     open_ports = scan_host(host)
-    print(open_ports)
+    search_sploit(open_ports)
+    print('Done')
