@@ -7,7 +7,7 @@
 
 import nmap
 import sys
-import os
+import subprocess
 import re
 
 def scan_host(host):
@@ -36,7 +36,7 @@ def search_sploit(open_ports):
         product = port[0]
         version = port[1]
         print(f'Searching for exploits for {product} {version}...')
-        result = str(os.system(f'searchsploit {product} {version} --id '))
+        result = subprocess.check_output(f'searchsploit {product} {version} --id ')
         print(result)
 
 if __name__ == '__main__':
