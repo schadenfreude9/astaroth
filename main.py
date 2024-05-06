@@ -2,7 +2,7 @@
 # Author DMO, LIT & MNE
 # A python scanner using metasploit module and nmap vulnhub script to get a list of CVE for a given host
 
-import metasploit
+import pymetasploit3
 import nmap
 import sys
 
@@ -10,7 +10,7 @@ import sys
 
 def get_cve(host):
     # Create a new instance of the Metasploit API
-    msf = metasploit.MSF()
+    msf = pymetasploit3.MSF()
     # Connect to the Metasploit API
     msf.login('msf', 'msf')
     # Get the list of CVE for the host
