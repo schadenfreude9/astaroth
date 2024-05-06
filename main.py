@@ -28,7 +28,11 @@ def trim_results(results):
     all_edb_ids = []
     for edb_id in edb_ids:
         all_edb_ids.append(edb_id)
-    print(all_edb_ids)
+    return all_edb_ids
+
+def use_sploit(edb_id):
+    result = str(subprocess.check_output(f'searchsploit -x {edb_id}', shell=True))
+    print(result)
 
 def search_sploit(open_ports):
     for port in open_ports:
@@ -36,7 +40,8 @@ def search_sploit(open_ports):
         version = port[1]
         print(f'Searching for exploits for {product} {version}...')
         result = subprocess.check_output(f'searchsploit {product} {version} --id ', shell=True)
-        trim_results(str(result))
+        # faire differienciation entre les resultats ( RCE, LFI, etc...)
+        return trim_results(str(result))
 
 if __name__ == '__main__':
     if len(sys.argv) != 2:
@@ -44,5 +49,7 @@ if __name__ == '__main__':
         sys.exit(1)
     host = sys.argv[1]
     open_ports = scan_host(host)
-    search_sploit(open_ports)
+    list_of_sploit = search_sploit(open_ports)
+    for sploit in list_of_sploit:
+        use_sploit(sploit)
     print('Done')
