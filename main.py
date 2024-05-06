@@ -40,7 +40,7 @@ def search_sploit(open_ports):
         version = port[1]
         print(f'Searching for exploits for {product} {version}...')
         result = subprocess.check_output(f'searchsploit {product} {version} --id --exclude="Denial"', shell=True)
-        # faire differienciation entre les resultats ( RCE, LFI, etc...)
+        # enlever tout sauf les RCE
         return trim_results(str(result))
 
 if __name__ == '__main__':
