@@ -7,14 +7,8 @@
 
 import nmap
 import sys
-from pymetasploit3.msfrpc import MsfRpcClient
 # import all the functions from the exploit_deck.py file in the same directory
 from exploit_deck import *
-
-def setup_pymetasploit_connection():
-    global client
-    client = MsfRpcClient('astaroth', ssl=True)
-    return client
 
 def scan_host(host):
     nm = nmap.PortScanner()
@@ -49,8 +43,6 @@ if __name__ == '__main__':
         sys.exit(1)
     global host
     host = sys.argv[1]
-    
-    setup_pymetasploit_connection()
     open_ports = scan_host(host)
     list_of_sploit = search_sploit(open_ports)
     
