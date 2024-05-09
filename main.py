@@ -7,6 +7,7 @@
 
 import nmap
 import sys
+import pdf_reports
 from pdf_reports import ReportWriter
 import subprocess
 # import all the functions from the exploit_deck.py file in the same directory
@@ -50,7 +51,7 @@ def sploit_to_pdf(list_of_sploit):
     # si on le path contient le nom du dossier, on sait qu'on est dans le bon dossier
     if "astaroth" not in path:
         path += "/astaroth"
-    report_writer.GLOBALS["logo_path"] = path +"/final_logo.png"
+    pdf_reports.GLOBALS["logo_path"] = path +"/final_logo.png"
     html = report_writer.pug_to_html(path + "/template.pug", table_defou= list_of_sploit)
     report_writer.write_report(html, "report_exploitation.pdf")    
 if __name__ == '__main__':
