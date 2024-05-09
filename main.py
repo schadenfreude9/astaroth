@@ -22,7 +22,6 @@ def scan_host(host):
                 product = nm[host][proto][port]['product']
                 version = nm[host][proto][port]['version']
                 open_ports.append([product, version])
-    print(open_ports)
     return open_ports
 
 # ptet tout suppr pour utiliser metasploit on sait pas
@@ -58,5 +57,6 @@ if __name__ == '__main__':
     host = sys.argv[1]
     open_ports = scan_host(host)
     list_of_sploit = search_sploit(open_ports)
+    sploit_to_pdf(list_of_sploit)
     
     print('Done')
