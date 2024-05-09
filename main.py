@@ -8,7 +8,12 @@
 import nmap
 import sys
 import subprocess
+import pymetasploit3
 import re
+
+def setup_pymetasploit_connection():
+    client = pymetasploit3.MsfRpcClient('astaroth', ssl=True)
+    return client
 
 def scan_host(host):
     nm = nmap.PortScanner()
@@ -23,18 +28,6 @@ def scan_host(host):
                 open_ports.append([product, version])
     return open_ports
 
-def trim_results(results):
-    edb_ids = re.findall(r'\| (\d+)', results)
-    all_edb_ids = []
-    for edb_id in edb_ids:
-        all_edb_ids.append(edb_id)
-    return all_edb_ids
-
-def use_sploit(edb_id):
-    result = str(subprocess.check_output(f'searchsploit -x {edb_id}', shell=True))
-    print(result)
-
-
 # ptet tout suppr pour utiliser metasploit on sait pas
 def search_sploit(open_ports):
     for port in open_ports:
@@ -42,8 +35,7 @@ def search_sploit(open_ports):
         version = port[1]
         print(f'Searching for exploits for {product} {version}...')
         result = subprocess.check_output(f'searchsploit {product} {version} --id --exclude="Denial"', shell=True)
-        # enlever tout sauf les RCE
-        return trim_results(str(result))
+        return result
 
 if __name__ == '__main__':
     if len(sys.argv) != 2:
@@ -52,6 +44,5 @@ if __name__ == '__main__':
     host = sys.argv[1]
     open_ports = scan_host(host)
     list_of_sploit = search_sploit(open_ports)
-    for sploit in list_of_sploit:
-        use_sploit(sploit)
+
     print('Done')
