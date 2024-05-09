@@ -7,7 +7,7 @@
 
 import nmap
 import sys
-from pdf_reports import pug_to_html, write_report
+from pdf_reports import ReportWriter
 # import all the functions from the exploit_deck.py file in the same directory
 from exploit_deck import *
 
@@ -42,8 +42,12 @@ def search_sploit(open_ports):
 
 def sploit_to_pdf(list_of_sploit):
     # We pass the list of possible exploits to the pug file
-    html = pug_to_html("template.pug", title="My report")
-    write_report(html, "example.pdf")  
+    report_writer = ReportWriter(
+    default_template="template.pug",
+    title="Report d'exploitation de la machine " + host,
+    )
+    html = report_writer.pug_to_html(table_defou= list_of_sploit)
+    report_writer.write_report(html, "report_exploitation.pdf")    
     
 if __name__ == '__main__':
     if len(sys.argv) != 2:
