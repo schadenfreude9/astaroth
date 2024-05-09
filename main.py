@@ -44,39 +44,20 @@ def search_sploit(open_ports):
             print('No exploit found')
     return possible_exploits
 
-
-
-
-
-
-
-
 def sploit_to_pdf(list_of_sploit):
-    # We pass the list of possible exploits to the pug file
-
     # On créer un dataframe pandas avec les données pour faire un tableau
     # On utilise list_of_sploit pour remplir le tableau
     df = pd.DataFrame(list_of_sploit, columns=["Service", "Version", "Exploit"])
-
     path = str(subprocess.check_output("pwd")).replace("b'", "").replace("\\n'", "")
     report_writer = ReportWriter(
     title="Report d'exploitation de la machine " + host,
     )
-
-
-
-
-    
     # si on le path contient le nom du dossier, on sait qu'on est dans le bon dossier
     if "astaroth" not in path:
         path += "/astaroth"
     pdf_reports.GLOBALS["logo_path"] = path +"/final_logo.png"
     html = report_writer.pug_to_html(path + "/template.pug", dataframe=df)
     report_writer.write_report(html, "report_exploitation.pdf")    
-
-
-
-
 
 if __name__ == '__main__':
     if len(sys.argv) != 2:
