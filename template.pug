@@ -1,7 +1,7 @@
 img(style="width:250px; length:250px; display:block; margin:0 auto;"
     src="file:///{{ logo_path }}")
 
-#sidebar: p Debug
+#sidebar: p Test
 
 
 h1 {{ title }}
@@ -9,16 +9,8 @@ h1 {{ title }}
 
 .ui.piled.segment: p.
   Dire que ce rapport a été généré avec l'outil 
-  #[a(href='https://github.com/schadenfreude9/astaroth') Astaroth].
-  Réalisé dans le cadre du projet SDV
-
-.ui.container
-  .ui.icon.message.yel  low.block-center
-    i.exclamation.circle.icon
-    .content
-      .header A noter.
-      p.
-        ecrire que le rapport est généné automatiqueemnt et que c'est pas 100% fiable et qu'il faut tester
+  #[a(href='https://github.com/schadenfreude9/astaroth') Astaroth]
+  .Réalisé dans le cadre du projet SDV
 
 :markdown
   ##  I am a section title
@@ -28,6 +20,15 @@ h1 {{ title }}
   examples (yeah that's lazyness). If you are filling up a template with Python,
   you can use Panda's `dataframe.to_html(classes=['ui', 'celled', 'table'])` to
   create such tables:
+
+
+.ui.container
+  .ui.icon.message.red.block-center
+    i.exclamation.circle.icon
+    .content
+      .header NB.
+      p.
+        ecrire que le rapport est généné automatiqueemnt et que c'est pas 100% fiable et qu'il faut tester
 
 {{ table_defou }}
 
