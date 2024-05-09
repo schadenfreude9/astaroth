@@ -37,7 +37,7 @@ def search_sploit(open_ports):
         print(f'Searching for exploits for {product} {version}...')
         result = subprocess.check_output(f'searchsploit {product} {version} --id --exclude="Denial"', shell=True)
         # We add each result in a list
-        result = result.decode('utf-8').split('\n')
+        result = str(result).split('\n')
         vulnerabilities = []
         for line in result:
             if 'exploits' in line:
