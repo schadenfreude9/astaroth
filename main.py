@@ -64,12 +64,12 @@ def sploit_to_pdf(list_of_sploit):
     html = report_writer.pug_to_html(path + "/template.pug", dataframe=df)
     report_writer.write_report(html, "report_exploitation.pdf")    
 
-def sploiting(list_of_sploit, host):
+def sploiting(list_of_sploit, host,lhost):
     for sploit in list_of_sploit:
         product = sploit[0]
         exploit = sploit[2]
         print(f'Trying to exploit {product} with {exploit}...')
-        use_exploit(exploit,host)
+        use_exploit(exploit,host,lhost)
 
 if __name__ == '__main__':
     if len(sys.argv) != 2:
@@ -77,11 +77,13 @@ if __name__ == '__main__':
         sys.exit(1)
     global host
     host = sys.argv[1]
-    open_ports = scan_host(host)
-    list_of_sploit = search_sploit(open_ports)
-    sploit_to_pdf(list_of_sploit)
+    lhost = str(subprocess.check_output("ip -4 addr show eth0 | grep -oP '(?<=inet\s)\d+(\.\d+){3}'").replace("b'", "").replace("\\n'", ""))
+    print(lhost)
+    #open_ports = scan_host(host)
+    #list_of_sploit = search_sploit(open_ports)
+    #sploit_to_pdf(list_of_sploit)
     # Quand le reporting est fait, on passe a l'exploitation
     # et a l'histoire
 
-    sploiting(list_of_sploit, host)
+    #sploiting(list_of_sploit, host)
     print('Done')
