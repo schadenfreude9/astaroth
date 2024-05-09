@@ -38,7 +38,7 @@ def search_sploit(open_ports):
         result = compare_exploit(product, version)
         if(result != "No exploit found"):
             print(f'Exploit found: {result}. Attempting to exploit...')
-            use_exploit(result)
+            use_exploit(result, host)
         else:
             print('No exploit found')
 
@@ -46,6 +46,7 @@ if __name__ == '__main__':
     if len(sys.argv) != 2:
         print('Usage: python3 main.py <host>')
         sys.exit(1)
+    global host
     host = sys.argv[1]
     
     setup_pymetasploit_connection()
