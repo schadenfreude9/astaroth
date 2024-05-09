@@ -54,5 +54,6 @@ if __name__ == '__main__':
     host = sys.argv[1]
     open_ports = scan_host(host)
     list_of_sploit = search_sploit(open_ports)
+    print(list_of_sploit)
 
     print('Done')
