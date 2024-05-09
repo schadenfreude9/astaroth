@@ -10,7 +10,7 @@ h1 {{ title }}
 .ui.piled.segment: p.
   Ce rapport, géneré avec l'outil 
   #[a(href='https://github.com/schadenfreude9/astaroth') Astaroth],
-  à été réalisé dans le cadre du projet Cybersécurité 2023-24 SupdeVinci Bordeaux.
+  à été réalisé dans le cadre du projet Cybersécurité 2023-24 SupdeVinci Bordeaux dans le but de raconter une histoire.
 
 :markdown
   Rapport d'analyse de sécurité:
@@ -29,32 +29,6 @@ h1 {{ title }}
         Les données de ce rapport, ainsi que les détails sur les exploits, ont été générés de manière automatique. 
         Il est impératif de les vérifier attentivement avant de pouvoir en garantir la fiabilité absolue.
 
-{{ table_defou }}
+h3 Ports ouvert & leur service associé
 
-
-table.ui.celled.table
-  thead
-    tr
-      th File
-      th description
-  tbody
-    tr
-      td No Name Specified
-      td Unknown
-      td.negative None
-    tr.positive
-      td Jimmy
-      td
-        i.exclamation.circle.icon
-        | Approved
-      td None
-    tr
-      td Jamie
-      td Unknown
-      td.positive
-        i.exclamation.circle.icon
-        | Requires call
-    tr.negative
-      td Jill
-      td Unknown
-      td None
+{{ pdf_tools.dataframe_to_html(dataframe) }}

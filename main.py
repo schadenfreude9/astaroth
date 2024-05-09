@@ -10,6 +10,8 @@ import sys
 import pdf_reports
 from pdf_reports import ReportWriter
 import subprocess
+import pandas as pd
+
 # import all the functions from the exploit_deck.py file in the same directory
 from exploit_deck import *
 
@@ -36,24 +38,46 @@ def search_sploit(open_ports):
         result = compare_exploit(product, version)
         if(result != "No exploit found"):
             # if an exploit is found, we add the product and version to the list of possible exploits
-            possible_exploits.append([product, version])
+            possible_exploits.append([product, version, result])
             print("Possible exploit found: " + result)
         else:
             print('No exploit found')
     return possible_exploits
 
+
+
+
+
+
+
+
 def sploit_to_pdf(list_of_sploit):
     # We pass the list of possible exploits to the pug file
+
+    # On créer un dataframe pandas avec les données pour faire un tableau
+    # On utilise list_of_sploit pour remplir le tableau
+    df = pd.DataFrame(list_of_sploit, columns=["Service", "Version", "Exploit"])
+
     path = str(subprocess.check_output("pwd")).replace("b'", "").replace("\\n'", "")
     report_writer = ReportWriter(
     title="Report d'exploitation de la machine " + host,
     )
+
+
+
+
+    
     # si on le path contient le nom du dossier, on sait qu'on est dans le bon dossier
     if "astaroth" not in path:
         path += "/astaroth"
     pdf_reports.GLOBALS["logo_path"] = path +"/final_logo.png"
-    html = report_writer.pug_to_html(path + "/template.pug", table_defou= list_of_sploit)
+    html = report_writer.pug_to_html(path + "/template.pug", dataframe=df)
     report_writer.write_report(html, "report_exploitation.pdf")    
+
+
+
+
+
 if __name__ == '__main__':
     if len(sys.argv) != 2:
         print('Usage: python3 main.py <host>')
