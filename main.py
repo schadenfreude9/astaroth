@@ -26,6 +26,7 @@ def scan_host(host):
                 product = nm[host][proto][port]['product']
                 version = nm[host][proto][port]['version']
                 open_ports.append([product, version])
+    print(open_ports)
     return open_ports
 
 # ptet tout suppr pour utiliser metasploit on sait pas
