@@ -42,10 +42,6 @@ def search_sploit(open_ports):
 
 def sploit_to_pdf(list_of_sploit):
     # We pass the list of possible exploits to the pug file
-    report_writer = ReportWriter(
-    default_template="",
-    title="Report d'exploitation de la machine " + host,
-    )
     html = pug_to_html("template.pug", title="My report")
     write_report(html, "example.pdf")  
     
