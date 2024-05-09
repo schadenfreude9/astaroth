@@ -12,6 +12,7 @@ from pymetasploit3.msfrpc import MsfRpcClient
 from exploit_deck import *
 
 def setup_pymetasploit_connection():
+    global client
     client = MsfRpcClient('astaroth', ssl=True)
     return client
 
