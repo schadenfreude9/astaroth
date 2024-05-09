@@ -61,6 +61,7 @@ def sploit_to_pdf(list_of_sploit):
 
 def sploiting(list_of_sploit, host):
     for sploit in list_of_sploit:
+        product = sploit[0]
         exploit = sploit[2]
         print(f'Trying to exploit {product} with {exploit}...')
         use_exploit(exploit,host)
