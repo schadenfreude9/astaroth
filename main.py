@@ -35,8 +35,8 @@ def search_sploit(open_ports):
         print(f'Searching for exploits for {product} {version}...')
         result = compare_exploit(product, version)
         if(result != "No exploit found"):
-            # if an exploit is found, we add it to the list of possible_exploits
-            possible_exploits.append(result)
+            # if an exploit is found, we add the product and version to the list of possible exploits
+            possible_exploits.append([product, version])
             print("Possible exploit found: " + result)
         else:
             print('No exploit found')
