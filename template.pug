@@ -1,18 +1,18 @@
-img(style="width:250px; length:250px; display:inline-block; margin:0 auto;"
+img(style="width:250px; length:250px; display:block; margin:0 auto;"
     src="file:///{{ logo_path }}")
 
-#sidebar: p Hey, I am a sidebar text ! I make your document look much more serious.
+#sidebar:  p Copyright SupDeVinci Bordeaux Projet étudiant 2023-24 - Tous droits réservés
 
 
 h1 {{ title }}
 
 
 .ui.piled.segment: p.
-  Dire que ce rapport a été généré avec l'outil 
+  Ce rapport, géneré avec l'outil 
   #[a(href='https://github.com/schadenfreude9/astaroth') Astaroth]
-  .Réalisé dans le cadre du projet SDV
+    , à été réalisé dans le cadre du projet Cybersécurité 2023-24 SupdeVinci Bordeaux.
 
-:markdown
+:markdown   
   ##  I am a section title
   
   Maybe the author should think of more original content for the titles.
@@ -26,9 +26,9 @@ h1 {{ title }}
   .ui.icon.message.yellow.block-center
     i.exclamation.circle.icon
     .content
-      .header NB.
+      .header À noter.
       p.
-        ecrire que le rapport est généné automatiqueemnt et que c'est pas 100% fiable et qu'il faut tester
+        Les données de ce rapport, ainsi que les détails sur les exploits, ont été générés de manière automatique. Il est impératif de les vérifier attentivement avant de pouvoir en garantir la fiabilité absolue.
 
 {{ table_defou }}
 
