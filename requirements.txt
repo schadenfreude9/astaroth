@@ -1,2 +1,3 @@
 python-nmap == 0.7.1
 pymetasploit3 == 1.0.6
+pdf-reports 0.3.7

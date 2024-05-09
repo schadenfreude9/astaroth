@@ -7,6 +7,7 @@
 
 import nmap
 import sys
+import pdf-reports
 # import all the functions from the exploit_deck.py file in the same directory
 from exploit_deck import *
 
@@ -26,16 +27,28 @@ def scan_host(host):
 
 # ptet tout suppr pour utiliser metasploit on sait pas
 def search_sploit(open_ports):
+    possible_exploits = []
     for port in open_ports:
         product = port[0]
         version = port[1]
         print(f'Searching for exploits for {product} {version}...')
         result = compare_exploit(product, version)
         if(result != "No exploit found"):
-            print(f'Exploit found: {result}. Attempting to exploit...')
-            use_exploit(result, host)
+            # if an exploit is found, we add it to the list of possible_exploits
+            possible_exploits.append(result)
+            print("Possible exploit found: " + result)
         else:
             print('No exploit found')
+    return possible_exploits
+
+def sploit_to_pdf(list_of_sploit):
+    # We pass the list of possible exploits to the pug file
+    pdf = pdf_reports.PdfReports()
+    pdf.add_page()
+    pdf.add_title('Possible exploits')
+    pdf.add_table(list_of_sploit)
+    pdf.output('exploits.pdf')
+    
 
 if __name__ == '__main__':
     if len(sys.argv) != 2:
