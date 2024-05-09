@@ -7,7 +7,7 @@
 
 import nmap
 import sys
-import pdf-reports
+import pdf_reports
 # import all the functions from the exploit_deck.py file in the same directory
 from exploit_deck import *
 
