@@ -50,8 +50,8 @@ def sploit_to_pdf(list_of_sploit):
     # si on le path contient le nom du dossier, on sait qu'on est dans le bon dossier
     if "astaroth" not in path:
         path += "/astaroth"
-        
-    html = report_writer.pug_to_html(path + "/template.pug", logo_path=path + "/logo_final.png", table_defou= list_of_sploit)
+    report_writer.GLOBALS["logo_path"] = path +"/final_logo.png"
+    html = report_writer.pug_to_html(path + "/template.pug", table_defou= list_of_sploit)
     report_writer.write_report(html, "report_exploitation.pdf")    
 if __name__ == '__main__':
     if len(sys.argv) != 2:
