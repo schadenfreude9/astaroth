@@ -43,10 +43,9 @@ def search_sploit(open_ports):
 def sploit_to_pdf(list_of_sploit):
     # We pass the list of possible exploits to the pug file
     report_writer = ReportWriter(
-    default_template="template.pug",
     title="Report d'exploitation de la machine " + host,
     )
-    html = report_writer.pug_to_html("template.pug", table_defou= list_of_sploit)
+    html = report_writer.pug_to_html("/home/kali/Downloads/astaroth/template.pug", table_defou= list_of_sploit)
     report_writer.write_report(html, "report_exploitation.pdf")    
     v
 if __name__ == '__main__':
