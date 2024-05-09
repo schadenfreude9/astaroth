@@ -35,6 +35,9 @@ def search_sploit(open_ports):
     for port in open_ports:
         product = port[0]
         version = port[1]
+        # if the version is not specified, we replace it with a empty string
+        if version == None:
+            version = ''
         print(f'Searching for exploits for {product} {version}...')
         result = compare_exploit(product, version)
         if(result != "No exploit found"):
