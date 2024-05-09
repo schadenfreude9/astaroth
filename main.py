@@ -12,7 +12,7 @@ from pymetasploit3.msfrpc import MsfRpcClient
 from exploit_deck import *
 
 def setup_pymetasploit_connection():
-    client = pymetasploit3.MsfRpcClient('astaroth', ssl=True)
+    client = MsfRpcClient('astaroth', ssl=True)
     return client
 
 def scan_host(host):
