@@ -43,7 +43,7 @@ def search_sploit(open_ports):
 
 def sploit_to_pdf(list_of_sploit):
     # We pass the list of possible exploits to the pug file
-    path = str(subprocess.check_output("pwd"))
+    path = str(subprocess.check_output("pwd")).replace("b'", "").replace("\\n'", "")
     print(path)
     report_writer = ReportWriter(
     title="Report d'exploitation de la machine " + host,
