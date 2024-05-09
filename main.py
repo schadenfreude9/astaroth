@@ -48,6 +48,9 @@ def sploit_to_pdf(list_of_sploit):
     report_writer = ReportWriter(
     title="Report d'exploitation de la machine " + host,
     )
+    # si on le path contient le nom du dossier, on sait qu'on est dans le bon dossier
+    if "astaroth" not in path:
+        path += "/astaroth"
     html = report_writer.pug_to_html(path + "/template.pug", table_defou= list_of_sploit)
     report_writer.write_report(html, "report_exploitation.pdf")    
 if __name__ == '__main__':
