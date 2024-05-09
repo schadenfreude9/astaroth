@@ -51,7 +51,7 @@ def sploit_to_pdf(list_of_sploit):
     if "astaroth" not in path:
         path += "/astaroth"
         
-    html = report_writer.pug_to_html(path + "/template.pug", logo_path="/logo_final.png", table_defou= list_of_sploit)
+    html = report_writer.pug_to_html(path + "/template.pug", logo_path=path + "/logo_final.png", table_defou= list_of_sploit)
     report_writer.write_report(html, "report_exploitation.pdf")    
 if __name__ == '__main__':
     if len(sys.argv) != 2:
