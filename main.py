@@ -36,16 +36,10 @@ def search_sploit(open_ports):
         version = port[1]
         print(f'Searching for exploits for {product} {version}...')
         result = subprocess.check_output(f'searchsploit {product} {version} --id --exclude="Denial"', shell=True)
-        # We add each result in a list
-        result = str(result).split('\n')
-        vulnerabilities = []
-        for line in result:
-            if 'exploits' in line:
-                line = line.split(' ')
-                for word in line:
-                    if 'remote' in word:
-                        vulnerabilities.append(word)
-    return result
+        exploits = []
+        for line in result.splitlines():
+            exploits.append(str(line))
+    return exploits
 
 if __name__ == '__main__':
     if len(sys.argv) != 2:
