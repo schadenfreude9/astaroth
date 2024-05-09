@@ -77,7 +77,7 @@ if __name__ == '__main__':
         sys.exit(1)
     global host
     host = sys.argv[1]
-    lhost = str(subprocess.check_output(r"ip -4 addr show eth0 | grep -oP '(?<=inet\s)\d+(\.\d+){3}'")).replace("b'", "").replace("\\n'", "")
+    lhost = subprocess.check_output(r"ip -4 addr show eth0 | grep -oP '(?<=inet\s)\d+(\.\d+){3}'")
     print(lhost)
     #open_ports = scan_host(host)
     #list_of_sploit = search_sploit(open_ports)
