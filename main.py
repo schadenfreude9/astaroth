@@ -14,6 +14,7 @@ import pandas as pd
 import tqdm
 import termcolor
 from exploit_deck import *
+import time
 
 def show_motd():
     motd = """
@@ -36,13 +37,14 @@ def scan_host(host):
     nm = nmap.PortScanner()
     nm.scan(host, arguments='-sV -p1-10000 --version-light')
     open_ports = []
-    for host in nm.all_hosts():
-        for proto in nm[host].all_protocols():
-            lport = nm[host][proto].keys()
-            for port in lport:
-                product = nm[host][proto][port]['product']
-                version = nm[host][proto][port]['version']
-                open_ports.append([product, version])
+    with tqdm.tqdm(total=len(nm.all_hosts()), desc="Scan des ports...") as pbar:
+        for host in nm.all_hosts():
+            for proto in nm[host].all_protocols():
+                lport = nm[host][proto].keys()
+                for port in lport:
+                    product = nm[host][proto][port]['product']
+                    version = nm[host][proto][port]['version']
+                    open_ports.append([product, version])
 
     # On supprime les doublons dans la liste des ports ouverts qui ont la meme product et version
     open_ports = [list(t) for t in set(tuple(element) for element in open_ports)]
@@ -104,13 +106,12 @@ if __name__ == '__main__':
 
     # ICI on PIMP le programme
     show_motd()
-    print("⛥ Lancement du serveur metasploit...")
+    print("⛥> Lancement du serveur metasploit...")
     command = ["msfrpcd", "-P", "astaroth"]
-    # On utilise tqdm pour afficher une barre de progression pendant le lancement de metasploit
-    for i in tqdm.tqdm(range(100)):
-        pass
     subprocess.check_call(command,stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-    print("⛥ Serveur metasploit OK")
+    print("⛥> Serveur metasploit OK")
+    time.sleep(2)
+    print("⛥> Scan de la machine...")
     open_ports = scan_host(host)
     list_of_sploit = search_sploit(open_ports)
     sploit_to_pdf(list_of_sploit)
