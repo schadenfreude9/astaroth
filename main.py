@@ -29,8 +29,6 @@ def show_motd():
   ░   ▒   ░  ░  ░    ░        ░   ▒     ░░   ░ ░ ░ ░ ▒    ░       ░  ░░ ░
       ░  ░      ░                 ░  ░   ░         ░ ░            ░  ░  ░
 
-      
-
     """
     print(termcolor.colored(motd, 'red'))
 
