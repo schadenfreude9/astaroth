@@ -74,7 +74,7 @@ def sploiting(list_of_sploit, host,lhost):
         print(f'Trying to exploit {product} with {exploit}...')
         endcode = use_exploit(exploit,host,lhost)
         if endcode == 0:
-            print('Exploit succeeded')
+            print('Exploit succeeded!')
             break
         else:
             print('Exploit failed, trying another one...')
