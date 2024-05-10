@@ -28,7 +28,7 @@ def show_motd():
   ▒   ▒▒ ░░ ░▒  ░ ░    ░      ▒   ▒▒ ░  ░▒ ░ ▒░  ░ ▒ ▒░     ░     ▒ ░▒░ ░
   ░   ▒   ░  ░  ░    ░        ░   ▒     ░░   ░ ░ ░ ░ ▒    ░       ░  ░░ ░
       ░  ░      ░                 ░  ░   ░         ░ ░            ░  ░  ░
-          𓆩😈𓆪 Outil d'exploitation de failles de sécurité 𓆩😈𓆪              
+              ☯ Outil d'exploitation de failles de sécurité ☯                                                       
     """
     print(termcolor.colored(motd, 'red'))
 
