@@ -108,6 +108,7 @@ if __name__ == '__main__':
     print("⛥> Serveur metasploit OK")
     time.sleep(2)
     print("⛥> La machine cible est " + termcolor.colored(host, 'red'))
+    print("")
     open_ports = scan_host(host)
     list_of_sploit = search_sploit(open_ports)
     print("⛥> Nombre d'exploit trouvé: " + termcolor.colored(str(len(list_of_sploit)), 'red'))
@@ -121,4 +122,4 @@ if __name__ == '__main__':
     print("----------------------------")
     sploiting(list_of_sploit, host,lhost)    
     print("\n")
-    print("⛥> Fin du programme. Cybersécurité 2024 SDV - Projet Astaroth")
+    print("⛥> Fin du programme. 🗿" + termcolor.colored("Cybersécurité SDV - Projet Astaroth ", 'red') + "🗿")
