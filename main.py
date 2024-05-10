@@ -37,14 +37,13 @@ def scan_host(host):
     nm = nmap.PortScanner()
     nm.scan(host, arguments='-sV -p1-10000 --version-light')
     open_ports = []
-    with tqdm.tqdm(total=len(nm.all_hosts()), desc="Scan des ports...") as pbar:
-        for host in nm.all_hosts():
-            for proto in nm[host].all_protocols():
-                lport = nm[host][proto].keys()
-                for port in lport:
-                    product = nm[host][proto][port]['product']
-                    version = nm[host][proto][port]['version']
-                    open_ports.append([product, version])
+    for host in nm.all_hosts():
+        for proto in nm[host].all_protocols():
+            lport = nm[host][proto].keys()
+            for port in lport:
+                product = nm[host][proto][port]['product']
+                version = nm[host][proto][port]['version']
+                open_ports.append([product, version])
 
     # On supprime les doublons dans la liste des ports ouverts qui ont la meme product et version
     open_ports = [list(t) for t in set(tuple(element) for element in open_ports)]
@@ -53,19 +52,16 @@ def scan_host(host):
 # ptet tout suppr pour utiliser metasploit on sait pas
 def search_sploit(open_ports):
     possible_exploits = []
-    for port in open_ports:
-        product = port[0]
-        version = port[1]
-        # if the version is not specified, we replace it with a empty string
-        if version == None:
-            version = ''
-        #print(f'Searching for exploits for {product} {version}...')
-        #print("DEBUG: product = ." + product + ". version = ." + version + ".")
-        result = compare_exploit(product, version)
-        if(result != "No exploit found"):
-            # if an exploit is found, we add the product and version to the list of possible exploits
-            possible_exploits.append([product, version, result])
-            #print("Possible exploit found: " + result)
+    with tqdm.tqdm(total=len(open_ports), desc="Searching exploits") as pbar:
+        for port in open_ports:
+            product = port[0]
+            version = port[1]
+            if version == None:
+                version = ''
+            result = compare_exploit(product, version)
+            if(result != "No exploit found"):
+                possible_exploits.append([product, version, result])
+            pbar.update(1)
     return possible_exploits
 
 def sploit_to_pdf(list_of_sploit):
