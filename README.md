@@ -48,3 +48,9 @@ Cet outil vise à aider les professionnels de la sécurité informatique à éva
 <p align="center">
   <img src="gantt.png" alt="gantt"/>
 </p>
+
+## Plus d'informations 
+
+Machine de test : METASPLOITABLE 2
+
+Trello : https://trello.com/b/5QAnjmpd/astaroth-sdv
