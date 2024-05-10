@@ -5,7 +5,7 @@
 </p>
 
 ## Description 📖
-Astaroth est un outil de pentesting sous python3 éthique développé dans le cadre du projet de cybersécurité 2024 de l'école Sup De Vinci. 
+Astaroth est un outil de pentesting éthique sous python3 développé dans le cadre du projet de cybersécurité 2024 de l'école Sup De Vinci. 
 Cet outil vise à aider les professionnels de la sécurité informatique à évaluer la robustesse de leurs systèmes et applications contre les attaques potentielles.
 
 ## Fonctionnalités 🚀
