@@ -93,4 +93,4 @@ if __name__ == '__main__':
     # Quand le reporting est fait, on passe a l'exploitation
     # et a l'histoire
     sploiting(list_of_sploit, host,lhost)    
-    print('Done')
+    print('bye bye!')
