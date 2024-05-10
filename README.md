@@ -1,5 +1,9 @@
 <h1 align="center">Astaroth</h1>
-<img src="path/to/your/logo.png" alt="Astaroth Logo" width="50"/>
+
+<p align="center">
+  <img src="final_logo.png" alt="Astaroth Logo" width="50"/>
+</p>
+
 ## Description
 Astaroth est un outil de pentesting éthique développé dans le cadre du projet de cybersécurité 2024 de l'école Sup De Vinci. 
 Cet outil vise à aider les professionnels de la sécurité informatique à évaluer la robustesse de leurs systèmes et applications contre les attaques potentielles.
