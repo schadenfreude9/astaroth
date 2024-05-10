@@ -27,9 +27,8 @@ def scan_host(host):
                 version = nm[host][proto][port]['version']
                 open_ports.append([product, version])
 
-    # On supprime les doublons
-    open_ports = list(dict.fromkeys(open_ports))
-    print(open_ports)
+    # On supprime les doublons dans la liste des ports ouverts
+    open_ports = list(set(open_ports))
     return open_ports
 
 # ptet tout suppr pour utiliser metasploit on sait pas
