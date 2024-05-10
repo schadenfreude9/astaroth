@@ -41,15 +41,13 @@ def search_sploit(open_ports):
         # if the version is not specified, we replace it with a empty string
         if version == None:
             version = ''
-        print(f'Searching for exploits for {product} {version}...')
-        print("DEBUG: product = ." + product + ". version = ." + version + ".")
+        #print(f'Searching for exploits for {product} {version}...')
+        #print("DEBUG: product = ." + product + ". version = ." + version + ".")
         result = compare_exploit(product, version)
         if(result != "No exploit found"):
             # if an exploit is found, we add the product and version to the list of possible exploits
             possible_exploits.append([product, version, result])
-            print("Possible exploit found: " + result)
-        else:
-            print('No exploit found')
+            #print("Possible exploit found: " + result)
     return possible_exploits
 
 def sploit_to_pdf(list_of_sploit):
@@ -71,13 +69,11 @@ def sploiting(list_of_sploit, host,lhost):
     for sploit in list_of_sploit:
         product = sploit[0]
         exploit = sploit[2]
-        print(f'Trying to exploit {product} with {exploit}...')
+        #print(f'Trying to exploit {product} with {exploit}...')
         endcode = use_exploit(exploit,host,lhost)
         if endcode == 0:
-            print('Exploit succeeded!')
+            #print('Exploit succeeded!')
             break
-        else:
-            print('Exploit failed, trying another one...')
 
 if __name__ == '__main__':
     if len(sys.argv) != 2:
