@@ -86,6 +86,7 @@ if __name__ == '__main__':
     global host
     host = sys.argv[1]
     lhost = str(subprocess.check_output("ip -4 addr show eth0 | grep -oP '(?<=inet\s)\d+(\.\d+){3}'", shell=True)).replace("b'", "").replace("\\n'", "")
+    # faudrait faire un check la mais flemme
     os.system("msfrpcd -P astaroth")
     open_ports = scan_host(host)
     list_of_sploit = search_sploit(open_ports)
