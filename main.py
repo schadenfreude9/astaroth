@@ -108,7 +108,7 @@ if __name__ == '__main__':
     print("⛥> Serveur metasploit OK")
     time.sleep(2)
     print("⛥> La machine cible est " + termcolor.colored(host, 'red'))
-    print("")
+    print("⛥> Configuration des outils d'exploitation...⌛")
     open_ports = scan_host(host)
     list_of_sploit = search_sploit(open_ports)
     print("⛥> Nombre d'exploit trouvé: " + termcolor.colored(str(len(list_of_sploit)), 'red'))
