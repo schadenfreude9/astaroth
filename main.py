@@ -10,7 +10,6 @@ import sys
 import pdf_reports
 from pdf_reports import ReportWriter
 import subprocess
-from subprocess import DEVNULL, STDOUT
 import pandas as pd
 import tqdm
 import termcolor
@@ -27,8 +26,7 @@ def show_motd():
   ▒   ▒▒ ░░ ░▒  ░ ░    ░      ▒   ▒▒ ░  ░▒ ░ ▒░  ░ ▒ ▒░     ░     ▒ ░▒░ ░
   ░   ▒   ░  ░  ░    ░        ░   ▒     ░░   ░ ░ ░ ░ ▒    ░       ░  ░░ ░
       ░  ░      ░                 ░  ░   ░         ░ ░            ░  ░  ░
-                                                                         
-##########################################################################
+
       
 
     """
@@ -107,7 +105,7 @@ if __name__ == '__main__':
     # ICI on PIMP le programme
     show_motd()
     print("Starting the Metasploit RPC server...")
-    subprocess.check_output('msfrpcd -P astaroth', shell=True, stdout=DEVNULL, stderr=STDOUT)    
+    subprocess.check_output('msfrpcd -P astaroth | sudo tee /proc/sys/vm/drop_caches', shell=True)
     open_ports = scan_host(host)
     list_of_sploit = search_sploit(open_ports)
     sploit_to_pdf(list_of_sploit)
