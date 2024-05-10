@@ -105,7 +105,8 @@ if __name__ == '__main__':
     # ICI on PIMP le programme
     show_motd()
     print("Starting the Metasploit RPC server...")
-    subprocess.check_call("msfrpcd -P astaroth",stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    command = ["msfrpcd", "-P", "astaroth"]
+    subprocess.check_call(command,stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     open_ports = scan_host(host)
     list_of_sploit = search_sploit(open_ports)
     sploit_to_pdf(list_of_sploit)
