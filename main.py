@@ -43,11 +43,14 @@ def scan_host(host):
                 product = nm[host][proto][port]['product']
                 version = nm[host][proto][port]['version']
                 open_ports.append([product, version])
-    with tqdm.tqdm(total=len(open_ports), desc="⛥> Scanning des ports...") as pbar:
-        time.sleep(0.1)
-        pbar.update(1)
 
     open_ports = [list(t) for t in set(tuple(element) for element in open_ports)]
+    # On affiche une barre de progression pour montrer que le programme est en cours d'exécution
+    with tqdm.tqdm(total=len(open_ports), desc="⛥> Analyse des ports...") as pbar:
+        for port in open_ports:
+            pbar.update(1)
+            time.sleep(0.1)
+
     return open_ports
 
 # ptet tout suppr pour utiliser metasploit on sait pas
