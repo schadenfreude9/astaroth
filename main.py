@@ -18,6 +18,7 @@ import time
 
 def show_motd():
     motd = """
+    
  ▄▄▄        ██████ ▄▄▄█████▓ ▄▄▄       ██▀███   ▒█████  ▄▄▄█████▓ ██░ ██ 
 ▒████▄    ▒██    ▒ ▓  ██▒ ▓▒▒████▄    ▓██ ▒ ██▒▒██▒  ██▒▓  ██▒ ▓▒▓██░ ██▒
 ▒██  ▀█▄  ░ ▓██▄   ▒ ▓██░ ▒░▒██  ▀█▄  ▓██ ░▄█ ▒▒██░  ██▒▒ ▓██░ ▒░▒██▀▀██░
@@ -37,22 +38,23 @@ def scan_host(host):
     nm = nmap.PortScanner()
     nm.scan(host, arguments='-sV -p1-10000 --version-light')
     open_ports = []
-    for host in nm.all_hosts():
-        for proto in nm[host].all_protocols():
-            lport = nm[host][proto].keys()
-            for port in lport:
-                product = nm[host][proto][port]['product']
-                version = nm[host][proto][port]['version']
-                open_ports.append([product, version])
+    with tqdm.tqdm(total=1, desc="⛥> Scan des ports...") as pbar:
+        for host in nm.all_hosts():
+            for proto in nm[host].all_protocols():
+                lport = nm[host][proto].keys()
+                for port in lport:
+                    product = nm[host][proto][port]['product']
+                    version = nm[host][proto][port]['version']
+                    open_ports.append([product, version])
+            pbar.update(1)
 
-    # On supprime les doublons dans la liste des ports ouverts qui ont la meme product et version
     open_ports = [list(t) for t in set(tuple(element) for element in open_ports)]
     return open_ports
 
 # ptet tout suppr pour utiliser metasploit on sait pas
 def search_sploit(open_ports):
     possible_exploits = []
-    with tqdm.tqdm(total=len(open_ports), desc="Searching exploits") as pbar:
+    with tqdm.tqdm(total=len(open_ports), desc="⛥> Recherche d'exploit") as pbar:
         for port in open_ports:
             product = port[0]
             version = port[1]
@@ -62,6 +64,7 @@ def search_sploit(open_ports):
             if(result != "No exploit found"):
                 possible_exploits.append([product, version, result])
             pbar.update(1)
+            time.sleep(0.1)
     return possible_exploits
 
 def sploit_to_pdf(list_of_sploit):
