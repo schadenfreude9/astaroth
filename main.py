@@ -28,6 +28,9 @@ def show_motd():
   ░   ▒   ░  ░  ░    ░        ░   ▒     ░░   ░ ░ ░ ░ ▒    ░       ░  ░░ ░
       ░  ░      ░                 ░  ░   ░         ░ ░            ░  ░  ░
                                                                          
+##########################################################################
+      
+
     """
     print(termcolor.colored(motd, 'red'))
 
@@ -99,12 +102,12 @@ if __name__ == '__main__':
     lhost = str(subprocess.check_output("ip -4 addr show eth0 | grep -oP '(?<=inet\s)\d+(\.\d+){3}'", shell=True)).replace("b'", "").replace("\\n'", "")    
     # faudrait faire un check la mais flemme
 
-
+    
 
     # ICI on PIMP le programme
     show_motd()
     print("Starting the Metasploit RPC server...")
-    subprocess.check_call(['msfrpcd -P astaroth'], stdout=DEVNULL, stderr=STDOUT)    
+    subprocess.check_output('msfrpcd -P astaroth', shell=True, stdout=DEVNULL, stderr=STDOUT)    
     open_ports = scan_host(host)
     list_of_sploit = search_sploit(open_ports)
     sploit_to_pdf(list_of_sploit)
