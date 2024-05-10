@@ -10,11 +10,26 @@ import sys
 import pdf_reports
 from pdf_reports import ReportWriter
 import subprocess
+from subprocess import DEVNULL, STDOUT
 import pandas as pd
-import os
-
-# import all the functions from the exploit_deck.py file in the same directory
+import tqdm
+import termcolor
 from exploit_deck import *
+
+def show_motd():
+    motd = """
+ ▄▄▄        ██████ ▄▄▄█████▓ ▄▄▄       ██▀███   ▒█████  ▄▄▄█████▓ ██░ ██ 
+▒████▄    ▒██    ▒ ▓  ██▒ ▓▒▒████▄    ▓██ ▒ ██▒▒██▒  ██▒▓  ██▒ ▓▒▓██░ ██▒
+▒██  ▀█▄  ░ ▓██▄   ▒ ▓██░ ▒░▒██  ▀█▄  ▓██ ░▄█ ▒▒██░  ██▒▒ ▓██░ ▒░▒██▀▀██░
+░██▄▄▄▄██   ▒   ██▒░ ▓██▓ ░ ░██▄▄▄▄██ ▒██▀▀█▄  ▒██   ██░░ ▓██▓ ░ ░▓█ ░██ 
+ ▓█   ▓██▒▒██████▒▒  ▒██▒ ░  ▓█   ▓██▒░██▓ ▒██▒░ ████▓▒░  ▒██▒ ░ ░▓█▒░██▓
+ ▒▒   ▓▒█░▒ ▒▓▒ ▒ ░  ▒ ░░    ▒▒   ▓▒█░░ ▒▓ ░▒▓░░ ▒░▒░▒░   ▒ ░░    ▒ ░░▒░▒
+  ▒   ▒▒ ░░ ░▒  ░ ░    ░      ▒   ▒▒ ░  ░▒ ░ ▒░  ░ ▒ ▒░     ░     ▒ ░▒░ ░
+  ░   ▒   ░  ░  ░    ░        ░   ▒     ░░   ░ ░ ░ ░ ▒    ░       ░  ░░ ░
+      ░  ░      ░                 ░  ░   ░         ░ ░            ░  ░  ░
+                                                                         
+    """
+    print(termcolor.colored(motd, 'red'))
 
 def scan_host(host):
     nm = nmap.PortScanner()
@@ -81,9 +96,15 @@ if __name__ == '__main__':
         sys.exit(1)
     global host
     host = sys.argv[1]
-    lhost = str(subprocess.check_output("ip -4 addr show eth0 | grep -oP '(?<=inet\s)\d+(\.\d+){3}'", shell=True)).replace("b'", "").replace("\\n'", "")
+    lhost = str(subprocess.check_output("ip -4 addr show eth0 | grep -oP '(?<=inet\s)\d+(\.\d+){3}'", shell=True)).replace("b'", "").replace("\\n'", "")    
     # faudrait faire un check la mais flemme
-    os.system("msfrpcd -P astaroth")
+
+
+
+    # ICI on PIMP le programme
+    show_motd()
+    print("Starting the Metasploit RPC server...")
+    subprocess.check_call(['msfrpcd -P astaroth'], stdout=DEVNULL, stderr=STDOUT)    
     open_ports = scan_host(host)
     list_of_sploit = search_sploit(open_ports)
     sploit_to_pdf(list_of_sploit)

@@ -1,3 +1,5 @@
 python-nmap == 0.7.1
 pymetasploit3 == 1.0.6
 pdf-reports == 0.3.7
+tqdm == 4.66.4
+termcolor == 2.4.0
