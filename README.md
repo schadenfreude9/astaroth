@@ -52,5 +52,5 @@ Cet outil vise à aider les professionnels de la sécurité informatique à éva
 ## Plus d'informations 
 
 Machine de test : METASPLOITABLE 2
-
+Machine nécessaire : Kali-Linux
 Trello : https://trello.com/b/5QAnjmpd/astaroth-sdv
