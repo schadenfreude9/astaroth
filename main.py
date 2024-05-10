@@ -72,12 +72,8 @@ def sploiting(list_of_sploit, host,lhost):
         exploit = sploit[2]
         print(f'Trying to exploit {product} with {exploit}...')
         use_exploit(exploit,host,lhost)
-        flag = 0
-        if (flag == 0):
-            print('Exploit succeeded')
-            break
-        else:
-            print('Exploit failed')
+        print('Exploit done')
+
 if __name__ == '__main__':
     if len(sys.argv) != 2:
         print('Usage: python3 main.py <host>')
