@@ -105,7 +105,7 @@ if __name__ == '__main__':
     # ICI on PIMP le programme
     show_motd()
     print("Starting the Metasploit RPC server...")
-    subprocess.check_output('msfrpcd -P astaroth | sudo tee /proc/sys/vm/drop_caches', shell=True)
+    subprocess.check_call("msfrpcd -P astaroth",stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     open_ports = scan_host(host)
     list_of_sploit = search_sploit(open_ports)
     sploit_to_pdf(list_of_sploit)
