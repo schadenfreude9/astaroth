@@ -28,7 +28,7 @@ def show_motd():
   ▒   ▒▒ ░░ ░▒  ░ ░    ░      ▒   ▒▒ ░  ░▒ ░ ▒░  ░ ▒ ▒░     ░     ▒ ░▒░ ░
   ░   ▒   ░  ░  ░    ░        ░   ▒     ░░   ░ ░ ░ ░ ▒    ░       ░  ░░ ░
       ░  ░      ░                 ░  ░   ░         ░ ░            ░  ░  ░
-
+          𓆩😈𓆪 Outil d'exploitation de failles de sécurité 𓆩😈𓆪              
     """
     print(termcolor.colored(motd, 'red'))
 
@@ -100,7 +100,6 @@ if __name__ == '__main__':
     lhost = str(subprocess.check_output("ip -4 addr show eth0 | grep -oP '(?<=inet\s)\d+(\.\d+){3}'", shell=True)).replace("b'", "").replace("\\n'", "")    
     # faudrait faire un check la mais flemme
 
-    
 
     # ICI on PIMP le programme
     show_motd()
@@ -112,8 +111,13 @@ if __name__ == '__main__':
     print("⛥> La machine cible est " + termcolor.colored(host, 'red'))
     open_ports = scan_host(host)
     list_of_sploit = search_sploit(open_ports)
+    print("⛥> Nombre d'exploit trouvé: " + termcolor.colored(str(len(list_of_sploit)), 'red'))
+    if len(list_of_sploit) == 0:
+        print("⛥> Aucun exploit trouvé")
+        sys.exit(0)
+    print("⛥> Génération du rapport...")
     sploit_to_pdf(list_of_sploit)
-    # Quand le reporting est fait, on passe a l'exploitation
-    # et a l'histoire
+    print("⛥> Rapport généré sous le nom de " + termcolor.colored("report_exploitation.pdf", 'red') + " dans le dossier courant")
+    print("⛥> Exploitation des failles...")
     sploiting(list_of_sploit, host,lhost)    
     print('bye bye!')
