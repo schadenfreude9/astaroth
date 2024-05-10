@@ -17,7 +17,7 @@ Cet outil vise à aider les professionnels de la sécurité informatique à éva
 ## Installation
 1. Cloner le dépôt depuis GitHub :
     ```
-    git clone [https://github.com/schadenfreude9/astaroth]
+    git clone https://github.com/schadenfreude9/astaroth
     ```
 2. Installer les dépendances Python :
     ```
@@ -37,3 +37,14 @@ Cet outil vise à aider les professionnels de la sécurité informatique à éva
   <img src="demo.gif" alt="demo.gif"/>
 </p>
 
+## Schéma d'architecture
+
+<p align="center">
+  <img src="schema.png" alt="schema"/>
+</p>
+
+## Gantt
+
+<p align="center">
+  <img src="gantt.png" alt="gantt"/>
+</p>
