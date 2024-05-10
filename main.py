@@ -82,7 +82,7 @@ def sploit_to_pdf(list_of_sploit):
         path += "/astaroth"
     pdf_reports.GLOBALS["logo_path"] = path +"/final_logo.png"
     html = report_writer.pug_to_html(path + "/template.pug", dataframe=df)
-    report_writer.write_report(html, "report_exploitation.pdf")    
+    report_writer.write_report(html, "rapport_exploitation.pdf")    
 
 def sploiting(list_of_sploit, host,lhost):
     for sploit in list_of_sploit:
@@ -116,7 +116,9 @@ if __name__ == '__main__':
         sys.exit(0)
     print("⛥> Génération du rapport...")
     sploit_to_pdf(list_of_sploit)
-    print("⛥> Rapport généré sous le nom de " + termcolor.colored("report_exploitation.pdf", 'red') + " dans le dossier courant")
+    print("⛥> Rapport généré sous le nom de " + termcolor.colored("rapport_exploitation.pdf", 'red') + " dans le dossier courant")
     print("⛥> On va obtenir un shell sur la machine cible...")
+    print('\n')
+    print("----------------------------")
     sploiting(list_of_sploit, host,lhost)    
     print('bye bye!')
