@@ -1,7 +1,7 @@
 <h1 align="center">Astaroth</h1>
 
 <p align="center">
-  <img src="final_logo.png" alt="Astaroth Logo" width="50"/>
+  <img src="final_logo.png" alt="Astaroth Logo" width="300"/>
 </p>
 
 ## Description
