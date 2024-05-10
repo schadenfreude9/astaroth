@@ -118,8 +118,9 @@ if __name__ == '__main__':
     print("⛥> Génération du rapport...")
     sploit_to_pdf(list_of_sploit)
     print("⛥> Rapport généré sous le nom de " + termcolor.colored("rapport_exploitation.pdf", 'red') + " dans le dossier courant 📖")
+
     print("⛥> On va obtenir un shell sur la machine cible...")
     print("----------------------------")
     sploiting(list_of_sploit, host,lhost)    
     print("\n")
-    print("⛥> Fin du programme. 🗿" + termcolor.colored("Cybersécurité SDV - Projet Astaroth ", 'red') + "🗿")
+    print("⛥> Fin du programme. 🗿 " + termcolor.colored("Cybersécurité SDV - Projet Astaroth ", 'red') + "🗿")
