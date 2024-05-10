@@ -104,9 +104,13 @@ if __name__ == '__main__':
 
     # ICI on PIMP le programme
     show_motd()
-    print("Starting the Metasploit RPC server...")
+    print("⛥ Lancement du serveur metasploit...")
     command = ["msfrpcd", "-P", "astaroth"]
+    # On utilise tqdm pour afficher une barre de progression pendant le lancement de metasploit
+    for i in tqdm.tqdm(range(100)):
+        pass
     subprocess.check_call(command,stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    print("⛥ Serveur metasploit OK")
     open_ports = scan_host(host)
     list_of_sploit = search_sploit(open_ports)
     sploit_to_pdf(list_of_sploit)
