@@ -34,6 +34,6 @@ Cet outil vise à aider les professionnels de la sécurité informatique à éva
 ## Démonstration
 
 <p align="center">
-  <img src="tt" alt="demo.gif"/>
+  <img src="demo.gif" alt="demo.gif"/>
 </p>
 
