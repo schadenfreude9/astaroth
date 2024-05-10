@@ -46,6 +46,7 @@ def scan_host(host):
                     product = nm[host][proto][port]['product']
                     version = nm[host][proto][port]['version']
                     open_ports.append([product, version])
+            time.sleep(0.1)
             pbar.update(1)
 
     open_ports = [list(t) for t in set(tuple(element) for element in open_ports)]
@@ -110,7 +111,7 @@ if __name__ == '__main__':
     subprocess.check_call(command,stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     print("⛥> Serveur metasploit OK")
     time.sleep(2)
-    print("⛥> Scan de la machine...")
+    print("⛥> La machine cible est " + termcolor.colored(host, 'red'))
     open_ports = scan_host(host)
     list_of_sploit = search_sploit(open_ports)
     sploit_to_pdf(list_of_sploit)
