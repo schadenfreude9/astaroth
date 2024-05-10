@@ -71,7 +71,14 @@ def sploiting(list_of_sploit, host,lhost):
         product = sploit[0]
         exploit = sploit[2]
         print(f'Trying to exploit {product} with {exploit}...')
-        use_exploit(exploit,host,lhost)
+        flag = use_exploit(exploit,host,lhost)
+        if (flag == 0):
+            print('Exploit succeeded')
+            break
+        else:
+            print('Exploit failed')
+
+
 
 if __name__ == '__main__':
     if len(sys.argv) != 2:
@@ -85,6 +92,5 @@ if __name__ == '__main__':
     sploit_to_pdf(list_of_sploit)
     # Quand le reporting est fait, on passe a l'exploitation
     # et a l'histoire
-
-    sploiting(list_of_sploit, host,lhost)
+    sploiting(list_of_sploit, host,lhost)    
     print('Done')
